@@ -25,6 +25,7 @@ This application is a sample for calling C++ shared library from Java, and monit
   * Compile
     * `mvn install -Dmaven.test.skip=true`
   * Run
-    * `java -javaagent:/path/to/dd-java-agent.jar -jar java2cpp-0.0.1-SNAPSHOT.jar`
+    We don't use dd-java-agent.jar file in this sample code
+    * `java -jar java2cpp-0.0.1-SNAPSHOT.jar`
   * Access your app.
     * Send GET request to `http://YOUR_SERVER_ADDRESS:8000/test`
