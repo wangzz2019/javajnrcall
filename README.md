@@ -1,4 +1,4 @@
-# dd-apm-java-to-cpp
+# Java JNR Call
 
 ## Overview
 This application is a sample for calling C++ shared library from Java, and monitoring APM using Datadog.
