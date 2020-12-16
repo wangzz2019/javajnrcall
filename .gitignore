@@ -1,0 +1,9 @@
+logs
+.idea
+.vscode
+.target
+dd-java-agent.jar
+libplus.so
+cpprun
+.bash_history
+java2cpp.iml

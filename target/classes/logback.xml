@@ -1,0 +1,42 @@
+<configuration>
+	<timestamp key="byDay" datePattern="yyyyMMdd'T'HHmmss" />
+
+	<appender name="STDOUT_RAW"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - dd.trace_id=%X{dd.trace_id:-0} dd.span_id=%X{dd.span_id:-0} - %m%n</Pattern>
+		</encoder>
+	</appender>
+
+	<appender name="STDOUT_JSON"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <customFields>{"env":"prod"}</customFields>
+            <fieldNames>
+                <timestamp>time</timestamp>
+                <message>msg</message>
+                <version>version</version>
+                <stackTrace>stacktrace</stackTrace>
+            </fieldNames>
+        </encoder>
+	</appender>
+
+	<appender name="FILE_JSON" class="ch.qos.logback.core.FileAppender">
+		<file>logs/app.log</file>
+		<encoder class="net.logstash.logback.encoder.LogstashEncoder">
+			<customFields>{"env":"prod"}</customFields>
+			<fieldNames>
+				<timestamp>time</timestamp>
+				<message>msg</message>
+				<version>version</version>
+				<stackTrace>stacktrace</stackTrace>
+			</fieldNames>
+		</encoder>
+	</appender>
+
+	<root level="info">
+		<appender-ref ref="STDOUT_RAW" />
+		<appender-ref ref="FILE_JSON" />
+		<!-- <appender-ref ref="STDOUT_JSON" />  -->
+	</root>
+</configuration>
