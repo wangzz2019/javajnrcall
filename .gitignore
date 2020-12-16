@@ -1,7 +1,7 @@
 logs
 .idea
 .vscode
-.target
+target
 dd-java-agent.jar
 libplus.so
 cpprun
