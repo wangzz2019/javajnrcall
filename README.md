@@ -20,7 +20,8 @@ This application is a sample for calling C++ shared library from Java, and monit
 * Set environment variables
   * DD_LOGS_INJECTION=true
   * DATADOG_API_KEY=your_api_key
-
+  * LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib64:/root/jnr   (the second path is where your cpp file output)
+    
 ## How to Run
   * Compile
     * `mvn install -Dmaven.test.skip=true`
