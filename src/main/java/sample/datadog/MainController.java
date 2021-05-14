@@ -27,6 +27,8 @@ import lombok.extern.slf4j.Slf4j;
 import datadog.opentracing.DDTracer;
 import io.opentracing.*;
 import io.opentracing.util.GlobalTracer;
+import datadog.trace.api.CorrelationIdentifier;
+
 
 class MyTraceInfo {
 	Map<String, String> m;
@@ -44,7 +46,7 @@ class MyTraceInfo {
 public class MainController implements InitializingBean {
 	private INative iNative;
 
-	@RequestMapping(value = "/sprinttest", method = RequestMethod.GET)
+	@RequestMapping(value = "/springtest", method = RequestMethod.GET)
 	public String springtest(){
 		Tracer tracer=GlobalTracer.get();
 		Span span = tracer.buildSpan("spring_test")
@@ -63,6 +65,8 @@ public class MainController implements InitializingBean {
 			span.finish();
 		}
 		System.out.println("it is just a test");
+		System.out.println(CorrelationIdentifier.getTraceId());
+		System.out.println(CorrelationIdentifier.getSpanId());
 		return "";
 	}
 	/**
@@ -106,6 +110,10 @@ public class MainController implements InitializingBean {
 
 			assert cppResult == 6;
 			log.info("<<<<<<<<<< C++ FINISHED. Result={}", cppResult);
+
+			System.out.println(CorrelationIdentifier.getTraceId());
+			System.out.println(CorrelationIdentifier.getSpanId());
+
 		} finally {
 			span.finish();
 //			tracer.close();

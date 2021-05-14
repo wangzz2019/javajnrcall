@@ -57,7 +57,8 @@ int runcppkv(int m, int n, char** keys, char** values){
   for (int i=0;*(keys+i)!=nullptr;i++){
     std::cout<<*(keys+i)<<": "<<*(values+i)<<std::endl;
   }
-  datadog::opentracing::TracerOptions tracer_options{"localhost", 8126, "cppservice"};
+  datadog::opentracing::TracerOptions tracer_options{"localhost", 8126, "cppservice1"};
+  //datadog::opentracing::TracerOptions tracer_options{"localhost", 8126, "cppservice1","db"};
   auto tracer = datadog::opentracing::makeTracer(tracer_options);
   {
     std::unordered_map<std::string, std::string> text_map;
@@ -70,6 +71,7 @@ int runcppkv(int m, int n, char** keys, char** values){
     auto span=tracer->StartSpan("nativeCode", {ChildOf(span_context->get())});
 
     span->SetTag("cppspan", 123);
+    //span->SetTag("db.type","SQL");
     result= plus(m,n);
     span->Finish();
   }
