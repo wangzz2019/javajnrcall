@@ -43,6 +43,13 @@ class MyTraceInfo {
 public class MainController implements InitializingBean {
 	private INative iNative;
 
+	@RequestMapping(value = "/javatest", method = RequestMethod.GET)
+//	@Timed(value = "time.logging.callnative")
+//	@Trace(operationName = "trace.logging.callnative", resourceName = "MainController.loggingWithNative")
+	public String javatest() {
+		return "Hi, this is a java spring test page";
+	}
+
 	/**
 	 *
 	 * @return

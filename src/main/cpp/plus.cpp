@@ -57,7 +57,8 @@ int runcppkv(int m, int n, char** keys, char** values){
   for (int i=0;*(keys+i)!=nullptr;i++){
     std::cout<<*(keys+i)<<": "<<*(values+i)<<std::endl;
   }
-  datadog::opentracing::TracerOptions tracer_options{"localhost", 8126, "cppservice"};
+  //datadog::opentracing::TracerOptions tracer_options{"localhost", 8126, "cppservice"};
+  datadog::opentracing::TracerOptions tracer_options{"localhost", 8126, "CPPサービス","db"};
   auto tracer = datadog::opentracing::makeTracer(tracer_options);
   {
     std::unordered_map<std::string, std::string> text_map;
